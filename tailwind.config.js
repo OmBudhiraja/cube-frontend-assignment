@@ -21,5 +21,3 @@ export default {
   },
   plugins: [],
 };
-
-// const { violet, blackA, mauve, green } = require('@radix-ui/colors');
