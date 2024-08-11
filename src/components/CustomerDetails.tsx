@@ -30,8 +30,11 @@ const CustomerDetails = ({ customer }: CustomerDetailsProps) => {
 
   return (
     <div className="w-full flex-1 py-12 px-12 flex flex-col gap-7 items-center overflow-y-auto bg-gray-100">
-      <h2 className="text-[22px]">{customer.title}</h2>
-      <p className="text-gray-500 text-center leading-snug max-w-3xl px-5">{customer.address}</p>
+      <h2 className="text-[22px]">{customer.name}</h2>
+      <p className="text-gray-600 text-center leading-snug max-w-3xl px-5 text-lg -mt-4">
+        {customer.address}
+      </p>
+      <p className="text-gray-500 text-center leading-snug max-w-3xl px-5">{customer.title}</p>
       <div className="grid grid-cols-3 gap-12 mt-5">
         {photos.map((photo, index) => (
           <GridImage key={`${customer.id}-${index}`} src={photo} />

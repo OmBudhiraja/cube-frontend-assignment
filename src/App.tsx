@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { customers as initialCustomers } from './data';
 import CustomerList from './components/CustomerList';
 import CustomerDetails from './components/CustomerDetails';
-import { customers } from './data';
+import AddCustomerModal from './components/AddCustomerModal';
 
-const App: React.FC = () => {
+const App = () => {
+  const [customers, setCustomers] = useState(initialCustomers);
   const [selectedCustomerId, setSelectedCustomerId] = useState<string | null>(customers[0].id);
+  const [showAddCustomerModal, setShowAddCustomerModal] = useState(false);
 
   const selectedCustomer = customers.find((customer) => customer.id === selectedCustomerId);
 
@@ -16,6 +19,14 @@ const App: React.FC = () => {
         onSelectCustomer={setSelectedCustomerId}
       />
       {selectedCustomer && <CustomerDetails customer={selectedCustomer} />}
+      <AddCustomerModal
+        open={showAddCustomerModal}
+        onOpenChange={setShowAddCustomerModal}
+        handleAdd={(c) => {
+          setCustomers((prev) => [c, ...prev]);
+          setSelectedCustomerId(c.id);
+        }}
+      />
     </div>
   );
 };
