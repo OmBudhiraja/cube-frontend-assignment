@@ -11,7 +11,7 @@ const CustomerCard = ({ customer, isSelected, onSelectCustomer }: CustomerCardPr
   return (
     <button
       key={customer.id}
-      className={`w-full p-6 cursor-pointer flex flex-col gap-4 border-b outline-none focus:bg-gray-200 border-gray-200 last:border-b-0 transition-colors ${
+      className={`w-full p-6 cursor-pointer flex flex-col gap-4 border-b outline-none focus:bg-gray-100 border-gray-200 transition-colors ${
         isSelected ? 'bg-gray-200 border-r-2 border-r-slate-800' : 'bg-white'
       }`}
       onClick={() => onSelectCustomer(customer.id)}

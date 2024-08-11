@@ -1,4 +1,5 @@
-import { useAutoAnimate } from '@formkit/auto-animate/react';
+import { Virtuoso } from 'react-virtuoso';
+
 import { Customer } from '../data';
 import CustomerCard from './CustomerCard';
 
@@ -9,22 +10,19 @@ interface CustomerListProps {
 }
 
 const CustomerList = ({ customers, selectedCustomerId, onSelectCustomer }: CustomerListProps) => {
-  const [animationParent] = useAutoAnimate();
-
   return (
-    <aside
-      ref={animationParent}
-      className="w-96 h-full overflow-y-auto custom-scrollar border-r border-gray-200"
-    >
-      {customers.map((customer) => (
+    <Virtuoso
+      data={customers}
+      className="w-96 h-full overflow-y-hidden custom-scrollar border-r border-gray-200"
+      itemContent={(_, c) => (
         <CustomerCard
-          key={customer.id}
-          customer={customer}
-          isSelected={selectedCustomerId === customer.id}
+          key={c.id}
+          customer={c}
+          isSelected={selectedCustomerId === c.id}
           onSelectCustomer={onSelectCustomer}
         />
-      ))}
-    </aside>
+      )}
+    />
   );
 };
 
